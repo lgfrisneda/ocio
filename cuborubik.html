@@ -4,9 +4,18 @@
 	<title>Cubo de rubik - HTML y CSS</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 <body>
 	<h1>Cubo de rubik básico</h1>
+	<div class="botonera">
+		<div class="boton" id="up">▲</div>
+		<div class="boton" id="down">▼</div>
+		<div class="boton" id="left">◄</div>
+		<div class="boton" id="right">►</div>
+		<div class="boton" id="auto">A</div>
+	</div>
 	<div class="container">
 		<div class="cubo">
 			<div class="caras" id="a">
@@ -77,5 +86,31 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		var ejeX = 0;
+		var ejeY = 0;
+
+		$('.boton').on('click', function() {
+		switch ($(this).attr("id")) {
+		    case "up":
+			    ejeX = ejeX + 90;
+			    break;
+		    case "down":
+			    ejeX = ejeX - 90;
+			    break;
+		    case "right":
+			    ejeY = ejeY + 90;
+			    break;
+		    case "left":
+			    ejeY = ejeY - 90;
+			    break;
+		    case "auto":
+		    	$('.cubo').toggleClass('giro-automatico');
+		    	break;
+		  }
+		  $('.cubo').attr('style', 'transform: rotateX(' + ejeX + 'deg) rotateY(' + ejeY + 'deg);')
+		});
+	</script>
+	
 </body>
 </html>
